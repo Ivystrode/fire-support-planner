@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { StorageService } from '../../storage.service';
 
 @Component({
   selector: 'app-new-mission',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 export class NewMissionPage implements OnInit {
   newMissionForm: FormGroup;
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
     this.newMissionForm = new FormGroup({
@@ -42,6 +43,19 @@ export class NewMissionPage implements OnInit {
         validators: [Validators.required]
       })
     });
+  }
+
+  chooseOnMap() {
+    console.log('choose target on map');
+  }
+
+  onCreateFirePlan() {
+    if (this.newMissionForm.valid) {
+      console.log('new fire plan');
+    } else {
+      console.log('form invalid');
+    }
+    
   }
 
 }
