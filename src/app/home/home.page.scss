@@ -1,1 +1,18 @@
+hr {
+    height: 5px;
+    width: 80%;
+    background: gray;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
 
+.img-container {
+    display: flex;
+    justify-content: center;
+}
+
+div ion-img {
+    max-width: 300px;
+    max-height: 110px;
+}

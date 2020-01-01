@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Fire Missions</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/fire-missions/new-mission">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <div class="ion-text-center">
+    <p>Fire missions you have created will appear here</p>
+  </div>
+  <ion-segment (ionChange)="onFilterUpdate($event)">
+    <ion-segment-button value="inProgress" checked>In Progress</ion-segment-button>
+    <ion-segment-button value="complete">Complete</ion-segment-button>
+  </ion-segment>
+
+</ion-content>
