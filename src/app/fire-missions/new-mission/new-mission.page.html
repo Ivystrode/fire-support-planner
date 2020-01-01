@@ -9,4 +9,64 @@
 
 <ion-content>
 
+  <form [formGroup]="newMissionForm">
+    <ion-grid>
+      <div class="separator ion-padding">
+        <h3>Target Information</h3>
+      </div>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Target</ion-label>
+            <ion-input type="text" formControlName="target"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Grid</ion-label>
+            <ion-input type="text" formControlName="grid"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Direction</ion-label>
+            <ion-input type="number" formControlName="direction"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Distance</ion-label>
+            <ion-input type="number" formControlName="distance"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <div class="separator ion-padding">
+        <h3>Ammunition Order</h3>
+      </div>
+      <ion-row>
+        <ion-col size-sm="4" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Zone</ion-label>
+            <ion-input type="text" formControlName="zone"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="4" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Ammunition Type</ion-label>
+            <ion-input type="text" formControlName="ammoType"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="4" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Prepare</ion-label>
+            <ion-input type="number" formControlName="numRounds"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+
 </ion-content>
