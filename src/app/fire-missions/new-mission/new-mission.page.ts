@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { StorageService } from '../../storage.service';
+import { FireMissionsService } from '../fire-missions.service';
 
 @Component({
   selector: 'app-new-mission',
@@ -10,7 +11,7 @@ import { StorageService } from '../../storage.service';
 export class NewMissionPage implements OnInit {
   newMissionForm: FormGroup;
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, private FMservice: FireMissionsService) { }
 
   ngOnInit() {
     this.newMissionForm = new FormGroup({
@@ -49,13 +50,62 @@ export class NewMissionPage implements OnInit {
     console.log('choose target on map');
   }
 
-  onCreateFirePlan() {
+  onCreateFireMission() {
     if (this.newMissionForm.valid) {
       console.log('new fire plan');
+      this.storageService.setObject(this.newMissionForm.value.target, {
+        target: this.newMissionForm.value.target,
+        grid: this.newMissionForm.value.grid,
+        direction: this.newMissionForm.value.direction,
+        distance: this.newMissionForm.value.distance,
+        zone: this.newMissionForm.value.zone,
+        ammoType: this.newMissionForm.value.ammoType,
+        numRounds: this.newMissionForm.value.numRounds
+      })
+      .then(result => {
+        console.log('Data stored: ' + result);
+      })
+      .catch(error => {
+        console.log('Data save error: ' + error);
+      });
     } else {
       console.log('form invalid');
     }
-    
+  }
+
+  getFireMission() {
+    this.storageService.getObject(this.newMissionForm.value.target).then(result => {
+      if (result != null) {
+        console.log('Fire Mission: ' + result.target + ' grid: ' + result.grid);
+      }
+    }).catch(error => {
+      console.log('error: ', error);
+    });
   }
 
 }
+
+// Tried this
+
+// onCreateFireMission() {
+//   if (this.newMissionForm.valid) {
+//     console.log('new fire plan');
+//     this.FMservice.newMission(
+//       this.newMissionForm.value.target,
+//       this.newMissionForm.value.grid,
+//       this.newMissionForm.value.direction,
+//       this.newMissionForm.value.distance,
+//       this.newMissionForm.value.zone,
+//       this.newMissionForm.value.ammoType,
+//       this.newMissionForm.value.numRounds
+//     );
+//     // .then(result => {
+//     //   console.log('Data stored: ' + result);
+//     // })
+//     // .catch(error => {
+//     //   console.log('Data save error: ' + error);
+//     // });
+//   } else {
+//     console.log('form invalid');
+//   }
+// }

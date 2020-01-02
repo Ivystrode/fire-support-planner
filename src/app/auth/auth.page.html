@@ -14,6 +14,10 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-list>
             <ion-item>
+              <ion-label position="floating">Username/Callsign</ion-label>
+              <ion-input  name="email" ngModel type="text" required #usernameCtrl="ngModel"></ion-input>              
+            </ion-item>
+            <ion-item>
               <ion-label position="floating">E-mail</ion-label>
               <ion-input  name="email" ngModel type="email" required email #emailCtrl="ngModel"></ion-input>              
             </ion-item>

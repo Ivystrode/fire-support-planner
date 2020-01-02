@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SegmentChangeEventDetail } from '@ionic/core';
 import { Mission } from './mission-models/mission.model';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-fire-missions',
@@ -9,7 +10,7 @@ import { Mission } from './mission-models/mission.model';
 })
 export class FireMissionsPage implements OnInit {
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
   }
@@ -18,5 +19,12 @@ export class FireMissionsPage implements OnInit {
     console.log('switched to: ' + event);
 
   }
+
+  ionViewWillEnter() {
+    console.log('entered fire missions page');
+    // this.storageService._missions.forEach(mission => {
+    //  console.log(mission);
+    // });
+}
 
 }

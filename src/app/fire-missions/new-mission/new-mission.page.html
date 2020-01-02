@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>New Fire Mission</ion-title>
     <ion-buttons slot="primary">
-      <ion-button (click)="onCreateFirePlan()">CONFIRM</ion-button>
+      <ion-button (click)="onCreateFireMission()">CONFIRM</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -70,7 +70,7 @@
       </ion-row>
       <ion-row class="ion-margin ion-padding">
         <ion-col size-sm="6" offset-sm="6">
-          <ion-button color="primary" (click)="chooseOnMap()">MAP SELECT</ion-button>
+          <ion-button color="primary" (click)="getFireMission(this.newMissionForm.value.target)">MAP SELECT</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

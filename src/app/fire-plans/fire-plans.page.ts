@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-fire-plans',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirePlansPage implements OnInit {
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
   }
+
+
 
 }

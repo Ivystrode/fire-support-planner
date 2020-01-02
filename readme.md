@@ -1,0 +1,1 @@
+An application for creating and conducting fire missions and fire plans for controllers/observers and fire support commanders.
