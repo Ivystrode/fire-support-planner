@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Fire Missions</ion-title>
     <ion-buttons slot="primary">
-      <ion-button routerLink="/fire-missions/new-mission">
+      <ion-button routerLink="./new-mission">
         <ion-icon name="add" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -18,14 +18,17 @@
   <div class="ion-text-center">
     <p>Fire missions you have created will appear here</p>
   </div>
-  <ion-segment (ionChange)="onFilterUpdate($event)">
+  <ion-segment (ionChange)="onFilterUpdate($event)" class="ion-padding">
     <ion-segment-button value="inProgress" checked>In Progress</ion-segment-button>
     <ion-segment-button value="complete">Complete</ion-segment-button>
   </ion-segment>
 
-  <ion-list>
-    <ion-item>
-      
+  <ion-list class="ion-margin">
+    <ion-item *ngFor="let mission of loadedMissions" [routerLink]="['./', mission.target]">
+      <ion-label>
+        <h2>{{ mission.target }}</h2>
+        <p> {{ mission.grid }}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 

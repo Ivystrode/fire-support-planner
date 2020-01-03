@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SegmentChangeEventDetail } from '@ionic/core';
 import { Mission } from './mission-models/mission.model';
 import { StorageService } from '../storage.service';
+import { FireMissionsService } from './fire-missions.service';
 
 @Component({
   selector: 'app-fire-missions',
@@ -9,8 +10,10 @@ import { StorageService } from '../storage.service';
   styleUrls: ['./fire-missions.page.scss'],
 })
 export class FireMissionsPage implements OnInit {
+  loadedMissions: Mission[];
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService,
+              private FMservice: FireMissionsService) { }
 
   ngOnInit() {
   }
@@ -22,9 +25,7 @@ export class FireMissionsPage implements OnInit {
 
   ionViewWillEnter() {
     console.log('entered fire missions page');
-    // this.storageService._missions.forEach(mission => {
-    //  console.log(mission);
-    // });
+    this.loadedMissions = this.FMservice.showFromStorage();
 }
 
 }

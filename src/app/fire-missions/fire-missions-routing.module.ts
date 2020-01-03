@@ -9,13 +9,13 @@ const routes: Routes = [
     component: FireMissionsPage
   },
   {
-    path: 'mission-detail',
-    loadChildren: () => import('./mission-detail/mission-detail.module').then( m => m.MissionDetailPageModule)
-  },
-  {
     path: 'new-mission',
     loadChildren: () => import('./new-mission/new-mission.module').then( m => m.NewMissionPageModule)
-  }
+  },
+  {
+    path: ':missionId',
+    loadChildren: () => import('./mission-detail/mission-detail.module').then( m => m.MissionDetailPageModule)
+  },
 ];
 
 @NgModule({

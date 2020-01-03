@@ -78,9 +78,10 @@ export class NewMissionPage implements OnInit {
   }
   showMissions() {
     // console.log(this.FMservice.showAll());
-    this.FMservice.showFromStorage().then(results => {
-      console.log(results);
-    });
+    // this.FMservice.showFromStorage().then(results => {
+    //   console.log(results);
+    // });
+    return this.storageService.getObject('FireMissions');
   }
 
 }

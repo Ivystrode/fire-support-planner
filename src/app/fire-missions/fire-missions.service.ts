@@ -27,16 +27,14 @@ export class FireMissionsService {
   //   return newMission;
   // }
 
-  newMission(newMsn) {
+  newMission(newMsn) { // don't actually need an argument?
     this.storageService.setObject('FireMissions', this.fireMissions);
   }
 
   getFromStorage(missionId) {
-    // let storedMissionList;
     let requestedMission;
     this.storageService.getObject('FireMissions').then(storedMissionList => {
       this.fireMissions = storedMissionList;
-      // console.log(this.fireMissions);
     });
     for (let i = 0; i < this.fireMissions.length; i++) {
     if (this.fireMissions[i].target === missionId) {
@@ -47,7 +45,7 @@ export class FireMissionsService {
   }
 
   showFromStorage() {
-    return this.storageService.getObject('FireMissions');
+    return [...this.fireMissions];
   }
 
 }
