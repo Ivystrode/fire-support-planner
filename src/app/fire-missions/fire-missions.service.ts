@@ -45,6 +45,36 @@ export class FireMissionsService {
     this.storageService.setObject('FireMsn', newMission);
   }
 
+    // this console logs a SINGLE fire mission
+    getFireMission(missionId) {
+      this.storageService.getObject(missionId).then(result => {
+        if (result != null) {
+          console.log('Fire Mission: ' + result.key + ' Target: ' + result.target + ' grid: ' + result.grid);
+        }
+      }).catch(error => {
+        console.log('error!!!: ', error);
+      });
+    }
+  
+    // this console logs ALL fire missions
+    // it works, but trying to figure out how to get the mission name/ID to display
+    // it is saved in the allMissions list - hence trying to access it with msnName below
+    // but doesnt work..
+    showAll() {
+      let msn: number;
+      let msnName;
+      for (msn = 0; msn < this.allMissions.length; msn++) {
+        this.storageService.getObject(this.allMissions[msn])
+        .then(res => {
+          msnName = this.allMissions[msn];
+          console.log(msnName);
+          console.log(res);
+        }).catch(err => {
+          console.log('Error! Either no fire missions or: ' + err);
+        });
+      }
+    }
+
 
 
 

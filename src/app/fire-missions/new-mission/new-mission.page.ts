@@ -73,26 +73,12 @@ export class NewMissionPage implements OnInit {
     }
   }
 
-  // this console logs a SINGLE fire mission
-  getFireMission() {
-    this.storageService.getObject(this.newMissionForm.value.target).then(result => {
-      if (result != null) {
-        console.log('Fire Mission: ' + result.key + ' Target: ' + result.target + ' grid: ' + result.grid);
-      }
-    }).catch(error => {
-      console.log('error: ', error);
-    });
+  getMission() {
+    this.FMservice.getFireMission(this.newMissionForm.value.target);
   }
 
-  // this console logs ALL fire missions
-  showAll() {
-    let msn: number;
-    for (msn = 0; msn < this.FMservice.allMissions.length; msn++) {
-      this.storageService.getObject(this.FMservice.allMissions[msn])
-      .then(res => {
-        console.log(res);
-      });
-    }
+  showMissions() {
+    this.FMservice.showAll();
   }
 
 }
