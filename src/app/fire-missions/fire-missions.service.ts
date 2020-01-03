@@ -9,8 +9,19 @@ import { pipe } from 'rxjs';
 })
 export class FireMissionsService {
   public _missions = new BehaviorSubject<Mission[]>([]);
+  public allMissions = [];
 
   constructor(private storageService: StorageService) { }
+
+  // Names each mission using the length of an array storing all missions to number each mission sequentially
+  missionNamer() {
+    const newMission = 'Fire Mission ' + (this.allMissions.length).toString();
+    this.allMissions.push(newMission);
+    console.log('new mission named: ' + newMission);
+    console.log('Total missions: ' + (this.allMissions.length).toString());
+    console.log(this.allMissions);
+    return newMission;
+  }
 
   newMission(
     target: string,

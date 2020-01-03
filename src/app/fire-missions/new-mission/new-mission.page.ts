@@ -52,8 +52,8 @@ export class NewMissionPage implements OnInit {
 
   onCreateFireMission() {
     if (this.newMissionForm.valid) {
-      console.log('new fire plan');
-      this.storageService.setObject(this.newMissionForm.value.target, {
+      console.log('new fire mission');
+      this.storageService.setObject(this.FMservice.missionNamer(), {
         target: this.newMissionForm.value.target,
         grid: this.newMissionForm.value.grid,
         direction: this.newMissionForm.value.direction,
@@ -73,14 +73,26 @@ export class NewMissionPage implements OnInit {
     }
   }
 
+  // this console logs a SINGLE fire mission
   getFireMission() {
     this.storageService.getObject(this.newMissionForm.value.target).then(result => {
       if (result != null) {
-        console.log('Fire Mission: ' + result.target + ' grid: ' + result.grid);
+        console.log('Fire Mission: ' + result.key + ' Target: ' + result.target + ' grid: ' + result.grid);
       }
     }).catch(error => {
       console.log('error: ', error);
     });
+  }
+
+  // this console logs ALL fire missions
+  showAll() {
+    let msn: number;
+    for (msn = 0; msn < this.FMservice.allMissions.length; msn++) {
+      this.storageService.getObject(this.FMservice.allMissions[msn])
+      .then(res => {
+        console.log(res);
+      });
+    }
   }
 
 }
