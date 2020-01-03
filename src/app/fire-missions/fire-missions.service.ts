@@ -62,11 +62,12 @@ export class FireMissionsService {
     // but doesnt work..
     showAll() {
       let msn: number;
-      let msnName;
+      let msnName = this.allMissions[msn];
       for (msn = 0; msn < this.allMissions.length; msn++) {
+        console.log(this.allMissions[msn]);
         this.storageService.getObject(this.allMissions[msn])
         .then(res => {
-          msnName = this.allMissions[msn];
+          // msnName = this.allMissions[msn];
           console.log(msnName);
           console.log(res);
         }).catch(err => {
