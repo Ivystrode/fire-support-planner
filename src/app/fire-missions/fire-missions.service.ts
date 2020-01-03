@@ -8,77 +8,46 @@ import { pipe } from 'rxjs';
   providedIn: 'root'
 })
 export class FireMissionsService {
-  public _missions = new BehaviorSubject<Mission[]>([]);
-  public allMissions = [];
+  public fireMissions = [];
 
   constructor(private storageService: StorageService) { }
 
   // Names each mission using the length of an array storing all missions to number each mission sequentially
-  missionNamer() {
-    const newMission = 'Fire Mission ' + (this.allMissions.length).toString();
-    this.allMissions.push(newMission);
-    console.log('new mission named: ' + newMission);
-    console.log('Total missions: ' + (this.allMissions.length).toString());
-    console.log(this.allMissions);
-    return newMission;
+  // do i need this now if im storing the array? (assuming this works)
+  // YES - using target as ID is a temporary solution. Need to give them ID's as well
+  // or do I really...?
+
+
+  // missionNamer() {
+  //   const newMission = 'Fire Mission ' + (this.fireMissions.length).toString();
+  //   this.fireMissions.push(newMission);
+  //   console.log('new mission named: ' + newMission);
+  //   console.log('Total missions: ' + (this.fireMissions.length).toString());
+  //   console.log(this.fireMissions);
+  //   return newMission;
+  // }
+
+  newMission(newMsn) {
+    this.storageService.setObject('FireMissions', this.fireMissions);
   }
 
-  newMission(
-    target: string,
-    grid: string,
-    direction: number,
-    distance: number,
-    zone: string,
-    ammoType: string,
-    numRounds: number
-  ) {
-    let newMission: Mission;
-    newMission = new Mission(
-      target,
-      grid,
-      direction,
-      distance,
-      zone,
-      ammoType,
-      numRounds
-    );
-    this.storageService.setObject('FireMsn', newMission);
-  }
-
-    // this console logs a SINGLE fire mission
-    getFireMission(missionId) {
-      this.storageService.getObject(missionId).then(result => {
-        if (result != null) {
-          console.log('Fire Mission: ' + result.key + ' Target: ' + result.target + ' grid: ' + result.grid);
-        }
-      }).catch(error => {
-        console.log('error!!!: ', error);
-      });
-    }
-  
-    // this console logs ALL fire missions
-    // it works, but trying to figure out how to get the mission name/ID to display
-    // it is saved in the allMissions list - hence trying to access it with msnName below
-    // but doesnt work..
-    showAll() {
-      let msn: number;
-      let msnName = this.allMissions[msn];
-      for (msn = 0; msn < this.allMissions.length; msn++) {
-        console.log(this.allMissions[msn]);
-        this.storageService.getObject(this.allMissions[msn])
-        .then(res => {
-          // msnName = this.allMissions[msn];
-          console.log(msnName);
-          console.log(res);
-        }).catch(err => {
-          console.log('Error! Either no fire missions or: ' + err);
-        });
+  getFromStorage(missionId) {
+    // let storedMissionList;
+    let requestedMission;
+    this.storageService.getObject('FireMissions').then(storedMissionList => {
+      this.fireMissions = storedMissionList;
+      // console.log(this.fireMissions);
+    });
+    for (let i = 0; i < this.fireMissions.length; i++) {
+    if (this.fireMissions[i].target === missionId) {
+      requestedMission = this.fireMissions[i];
       }
     }
+    return requestedMission;
+  }
 
-
-
-
-
+  showFromStorage() {
+    return this.storageService.getObject('FireMissions');
+  }
 
 }
