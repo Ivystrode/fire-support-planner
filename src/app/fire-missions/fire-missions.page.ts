@@ -3,6 +3,7 @@ import { SegmentChangeEventDetail } from '@ionic/core';
 import { Mission } from './mission-models/mission.model';
 import { StorageService } from '../storage.service';
 import { FireMissionsService } from './fire-missions.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-fire-missions',
@@ -13,7 +14,9 @@ export class FireMissionsPage implements OnInit {
   loadedMissions: Mission[];
 
   constructor(private storageService: StorageService,
-              private FMservice: FireMissionsService) { }
+              private FMservice: FireMissionsService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -26,6 +29,10 @@ export class FireMissionsPage implements OnInit {
   ionViewWillEnter() {
     console.log('entered fire missions page');
     this.loadedMissions = this.FMservice.showFromStorage();
+}
+
+toDetailPage(target) {
+  this.activatedRoute.snapshot.paramMap.get('target');
 }
 
 }

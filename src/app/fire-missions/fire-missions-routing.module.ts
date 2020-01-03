@@ -13,9 +13,25 @@ const routes: Routes = [
     loadChildren: () => import('./new-mission/new-mission.module').then( m => m.NewMissionPageModule)
   },
   {
-    path: ':missionId',
+    path: ':target',
     loadChildren: () => import('./mission-detail/mission-detail.module').then( m => m.MissionDetailPageModule)
   },
+  // {path: 'fire-missions',
+  // children: [
+  //   {
+  //     path: '',
+  //     loadChildren: './fire-missions/fire-missions.module#FireMissionsPageModule'
+  //   },
+  //   {
+  //     path: 'new-mission',
+  //     loadChildren: './fire-missions/new-mission/new-mission.module#NewMissionPageModule'
+  //   },
+  //   {
+  //     path: ':missionId',
+  //     loadChildren: './fire-missions/mission-detail/mission-detail.module#MissionDetailPageModule'
+  //   }
+  // ]
+  // }
 ];
 
 @NgModule({

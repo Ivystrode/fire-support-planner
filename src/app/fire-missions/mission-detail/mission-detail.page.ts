@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { FireMissionsService } from '../fire-missions.service';
 import { Mission } from '../mission-models/mission.model';
 
@@ -11,24 +11,27 @@ import { Mission } from '../mission-models/mission.model';
 })
 export class MissionDetailPage implements OnInit {
 
-  loadedMission: Mission;
+  public loadedMission: Mission;
+  private target: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private FMservice: FireMissionsService,
               private router: Router,
-              private alertCtrl: AlertController) { }
+              private alertCtrl: AlertController,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
-    console.log("ngoninit");
+    console.log('ngoninit');
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if (!paramMap.has('target')) {
         // redirect the user
-        this.router.navigate(['/fire-missions']);
+        this.navCtrl.navigateBack('/fire-missions');
         return;
       }
-      const target = paramMap.get('target');
-      this.loadedMission = this.FMservice.getFromStorage(target);
+      this.target = paramMap.get('target');
+      this.loadedMission = this.FMservice.getFromStorage(this.target);
     });
+    // this.activatedRoute.snapshot.paramMap.get('target');
   }
 
 }

@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ loadedMission.target }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ loadedMission?.target }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <p>{{ loadedMission?.grid }}</p>
 
 </ion-content>
