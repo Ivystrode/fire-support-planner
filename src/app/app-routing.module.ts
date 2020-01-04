@@ -16,10 +16,6 @@ const routes: Routes = [
     path: 'fire-plans',
     loadChildren: () => import('./fire-plans/fire-plans.module').then( m => m.FirePlansPageModule)
   }
-  // {path: 'home', loadChildren: './home/home.module#HomePageModule'},
-  // {path: 'auth', loadChildren: './auth/auth.module#AuthPageModule'},
-  // {path: 'fire-missions', loadChildren: './fire-missions/fire-missions.module#FireMissionsPage'},
-  // {path: 'fire-plans', loadChildren: './fire-plans/fire-plans.module#FirePlansPage'}
 ];
 
 @NgModule({

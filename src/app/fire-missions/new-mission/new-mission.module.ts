@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NewMissionPageRoutingModule } from './new-mission-routing.module';
 
 import { NewMissionPage } from './new-mission.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { NewMissionPage } from './new-mission.page';
     FormsModule,
     IonicModule,
     NewMissionPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [NewMissionPage]
 })

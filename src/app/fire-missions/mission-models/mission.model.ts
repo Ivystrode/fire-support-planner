@@ -1,5 +1,6 @@
 import { AmmoOrder } from './ammo-order.model';
 import { Engagement } from './engagement.model';
+import { PlaceLocation } from '../../shared/models/location.model';
 
 
 export class Mission {
@@ -15,5 +16,6 @@ export class Mission {
         public zone: string,
         public ammoType: string,
         public numRounds: number,
+        public location: PlaceLocation
     ) {}
 }

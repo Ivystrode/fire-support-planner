@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MissionDetailPageRoutingModule } from './mission-detail-routing.module';
 
 import { MissionDetailPage } from './mission-detail.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MissionDetailPageRoutingModule
+    MissionDetailPageRoutingModule,
+    SharedModule
   ],
   declarations: [MissionDetailPage]
 })

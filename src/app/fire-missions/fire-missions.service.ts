@@ -36,6 +36,7 @@ export class FireMissionsService {
     this.storageService.getObject('FireMissions').then(storedMissionList => {
       this.fireMissions = storedMissionList;
     });
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.fireMissions.length; i++) {
     if (this.fireMissions[i].target === missionId) {
       requestedMission = this.fireMissions[i];

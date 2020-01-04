@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { StorageService } from '../../storage.service';
 import { FireMissionsService } from '../fire-missions.service';
+import { PlaceLocation } from '../../shared/models/location.model';
 
 @Component({
   selector: 'app-new-mission',
@@ -46,12 +47,16 @@ export class NewMissionPage implements OnInit {
       numRounds: new FormControl(null, {
         updateOn: 'blur',
         validators: [Validators.required]
+      }),
+      location: new FormControl(null, {
+        validators: [Validators.required]
       })
     });
   }
 
-  chooseOnMap() {
-    console.log('choose target on map');
+  onLocationPicked(location: PlaceLocation) {
+    // tslint:disable-next-line: object-literal-shorthand
+    this.newMissionForm.patchValue({location: location});
   }
 
   onCreateFireMission() {
@@ -66,7 +71,8 @@ export class NewMissionPage implements OnInit {
         distance: this.newMissionForm.value.distance,
         zone: this.newMissionForm.value.zone,
         ammoType: this.newMissionForm.value.ammoType,
-        numRounds: this.newMissionForm.value.numRounds
+        numRounds: this.newMissionForm.value.numRounds,
+        location: this.newMissionForm.value.location
       };
       this.FMservice.fireMissions.push(newMsn);
       this.FMservice.newMission(newMsn);
