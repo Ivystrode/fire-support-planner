@@ -27,7 +27,7 @@
     <ion-item *ngFor="let mission of loadedMissions" (click)="toDetailPage(mission.target)" [routerLink]="['./', mission.target]"> <!-- -->
       <ion-label>
         <h2>{{ mission.target }}</h2>
-        <p> {{ mission.grid }}</p>
+        <p> <strong>{{ mission.grid }}</strong> | {{ mission.description }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

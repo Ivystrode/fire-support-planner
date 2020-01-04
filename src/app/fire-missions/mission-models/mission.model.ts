@@ -3,11 +3,12 @@ import { Engagement } from './engagement.model';
 
 
 export class Mission {
-  pipe() {
-    throw new Error('Method not implemented.');
-  }
+  // pipe() {
+  //   throw new Error('Method not implemented.');  what is this even for?
+  // }
     constructor(
         public target: string,
+        public description: string,
         public grid: string,
         public direction: number,
         public distance: number,

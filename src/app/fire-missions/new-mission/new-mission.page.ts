@@ -24,6 +24,9 @@ export class NewMissionPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required]
       }),
+      description: new FormControl(null, {
+        updateOn: 'blur',
+      }),
       direction: new FormControl(null, {
         updateOn: 'blur',
         // validators: [Validators.required]
@@ -58,6 +61,7 @@ export class NewMissionPage implements OnInit {
       newMsn = {
         target: this.newMissionForm.value.target,
         grid: this.newMissionForm.value.grid,
+        description: this.newMissionForm.value.description,
         direction: this.newMissionForm.value.direction,
         distance: this.newMissionForm.value.distance,
         zone: this.newMissionForm.value.zone,
