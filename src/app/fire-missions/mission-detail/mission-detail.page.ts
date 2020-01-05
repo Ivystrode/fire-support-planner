@@ -52,7 +52,26 @@ export class MissionDetailPage implements OnInit {
       alertEl.present();
     });
     }
-    
+  }
+
+  endMission() {
+    this.alertCtrl.create({header: 'CONFIRM END MISSION',
+    message: 'Ending the mission will prevent further engagements from being added',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'Cancel'
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+          console.log('Confirm end fire mission');
+        }
+      }
+    ]
+  }).then(alertEl => {
+    alertEl.present();
+  });
   }
 
 }
