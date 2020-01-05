@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Add Engagement</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="addEngagement()">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="newEngagementForm">
+    <ion-grid>
+
+      <ion-row class="align-items-flex-end">
+        <ion-col size-sm="6">
+          <ion-item class="ion-margin">
+            <ion-label>Direction</ion-label>
+            <ion-select formControlName="direction" ok-text="Select" cancel-text="Close">
+              <ion-select-option value="Left ">Left</ion-select-option>
+              <ion-select-option value="Right ">Right</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="6">
+          <ion-item class="amount">
+            <ion-label position="floating">Amount</ion-label>
+            <ion-input formControlName="directionAmount" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6">
+          <ion-item class="ion-margin">
+            <ion-label>Distance</ion-label>
+            <ion-select formControlName="distance" ok-text="Select" cancel-text="Close">
+              <ion-select-option value="Add ">Add</ion-select-option>
+              <ion-select-option value="Drop ">Drop</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="6">
+          <ion-item class="amount">
+            <ion-label position="floating">Amount</ion-label>
+            <ion-input formControlName="distanceAmount" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6">
+          <ion-item class="ion-margin">
+            <ion-label>Height</ion-label>
+            <ion-select formControlName="height" ok-text="Select" cancel-text="Close">
+              <ion-select-option value="Up ">Up</ion-select-option>
+              <ion-select-option value="Down ">Down</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="6">
+          <ion-item class="amount">
+            <ion-label position="floating">Amount</ion-label>
+            <ion-input formControlName="heightAmount" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3" class="ion-text-center">
+          <h2>Method</h2>
+          <ion-item>
+            <ion-label position="floating">Rounds</ion-label>
+            <ion-input formControlName="rounds" type="number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Rate</ion-label>
+            <ion-select formControlName="rate" ok-text="Select" cancel-text="Close">
+              <ion-select-option value="Rate 1">Rate 1 (60 seconds)</ion-select-option>
+              <ion-select-option value="Rate 2">Rate 2 (30 seconds)</ion-select-option>
+              <ion-select-option value="Rate 3">Rate 3 (20 seconds)</ion-select-option>
+              <ion-select-option value="Rate 4">Rate 4 (15 seconds)</ion-select-option>
+              <ion-select-option value="Rate 5">Rate 5 (12 seconds)</ion-select-option>
+              <ion-select-option value="Rate 6">Rate 6 (10 seconds)</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="ion-margin-top">
+            <ion-label position="floating">Engagement Type</ion-label>
+            <ion-select formControlName="type" ok-text="Select" cancel-text="Close">
+              <ion-select-option value="Adjust">Adjustment</ion-select-option>
+              <ion-select-option value="Fire for Effect">Fire for Effect</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  
+</ion-content>

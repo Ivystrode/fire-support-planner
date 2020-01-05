@@ -16,6 +16,7 @@ export class Mission {
         public zone: string,
         public ammoType: string,
         public numRounds: number,
-        public location: PlaceLocation
+        public location: PlaceLocation,
+        public engagements: Array<any>
     ) {}
 }

@@ -73,7 +73,8 @@ export class NewMissionPage implements OnInit {
         zone: this.newMissionForm.value.zone,
         ammoType: this.newMissionForm.value.ammoType,
         numRounds: this.newMissionForm.value.numRounds,
-        location: this.newMissionForm.value.location
+        location: this.newMissionForm.value.location,
+        engagements: []
       };
       this.FMservice.fireMissions.push(newMsn);
       this.FMservice.newMission(newMsn);

@@ -4,6 +4,7 @@ import { AlertController, NavController, ModalController } from '@ionic/angular'
 import { FireMissionsService } from '../fire-missions.service';
 import { Mission } from '../mission-models/mission.model';
 import { MapModalComponent } from '../../shared/map-modal/map-modal.component';
+import { AddEngagementComponent } from './add-engagement/add-engagement.component';
 
 @Component({
   selector: 'app-mission-detail',
@@ -14,13 +15,14 @@ export class MissionDetailPage implements OnInit {
 
   public loadedMission: Mission;
   private target: string;
+  public engagements = [];
 
   constructor(private activatedRoute: ActivatedRoute,
               private FMservice: FireMissionsService,
               private router: Router,
               private alertCtrl: AlertController,
               private navCtrl: NavController,
-              private modalCtrl: ModalController) { }
+              public modalCtrl: ModalController) { }
 
   ngOnInit() {
     console.log('ngoninit');
@@ -32,6 +34,7 @@ export class MissionDetailPage implements OnInit {
       }
       this.target = paramMap.get('target');
       this.loadedMission = this.FMservice.getFromStorage(this.target);
+      this.engagements = this.loadedMission.engagements;
     });
     // this.activatedRoute.snapshot.paramMap.get('target');
   }
@@ -52,6 +55,15 @@ export class MissionDetailPage implements OnInit {
       alertEl.present();
     });
     }
+  }
+
+  addEngagement() {
+    this.modalCtrl.create({component: AddEngagementComponent,
+    componentProps: {
+      loadedMission: this.loadedMission
+    }}).then(modalEl => {
+      modalEl.present();
+    });
   }
 
   endMission() {
