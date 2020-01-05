@@ -49,7 +49,8 @@ export class NewMissionPage implements OnInit {
         validators: [Validators.required]
       }),
       location: new FormControl(null, {
-        validators: [Validators.required]
+        updateOn: 'blur',
+      // validators: [Validators.required]
       })
     });
   }

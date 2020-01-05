@@ -37,7 +37,8 @@ export class MissionDetailPage implements OnInit {
   }
 
   showMap() {
-    this.modalCtrl.create({component: MapModalComponent, componentProps: {
+    if (this.loadedMission.location) {
+     this.modalCtrl.create({component: MapModalComponent, componentProps: {
       center: {lat: this.loadedMission.location.lat, lng: this.loadedMission.location.lng},
       selectable: false,
       closeButtonText: 'Close',
@@ -45,9 +46,13 @@ export class MissionDetailPage implements OnInit {
     }}).then(modalEl => {
       modalEl.present();
     });
+    } else {
+      this.alertCtrl.create({header: 'No Map location set', message: 'Grid reference was entered manually', buttons: ['Acknowledge']
+    }).then(alertEl => {
+      alertEl.present();
+    });
+    }
+    
   }
-  // showMap() {
-  //   console.log('Show Map');
-  // }
 
 }
