@@ -60,7 +60,25 @@ export class FireMissionsService {
     this.storageService.setObject('FireMissions', this.fireMissions);
   }
 
+  completeFireMission(missionId) {
+    let requestedMission;
+    this.storageService.getObject('FireMissions').then(storedMissionList => {
+      this.fireMissions = storedMissionList;
+    });
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.fireMissions.length; i++) {
+    if (this.fireMissions[i].target === missionId) {
+      requestedMission = this.fireMissions[i];
+      }
+    }
+    requestedMission.isComplete = true;
+    this.storageService.setObject('FireMissions', this.fireMissions);
+  }
+
   showFromStorage() {
+    this.storageService.getObject('FireMissions').then(storedMissionList => {
+      this.fireMissions = storedMissionList;
+    });
     return [...this.fireMissions];
   }
 

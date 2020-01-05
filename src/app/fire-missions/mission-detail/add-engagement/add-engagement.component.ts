@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { StorageService } from 'src/app/storage.service';
 import { FireMissionsService } from '../../fire-missions.service';
@@ -15,7 +15,8 @@ export class AddEngagementComponent implements OnInit {
 
   constructor(private modalCtrl: ModalController,
               private storageService: StorageService,
-              private FMservice: FireMissionsService) { }
+              private FMservice: FireMissionsService,
+              private alertCtrl: AlertController) { }
 
   ngOnInit() {
     console.log(`${this.loadedMission.target}`);
@@ -67,9 +68,13 @@ export class AddEngagementComponent implements OnInit {
       };
       console.log(newEng);
       this.modalCtrl.dismiss(this.FMservice.newEngagement(missionId, newEng));
-      // window.location.reload(); tried to use to refresh mission detail page
+      // window.location.reload(); // tried to use to refresh mission detail page
     } else {
       console.log('form invalid');
+      this.alertCtrl.create({header: 'Error', message: 'You must at least enter the number of rounds and type of engagement', buttons: ['Acknowledge']})
+      .then(alertEl => {
+        alertEl.present();
+      });
     }
   }
 

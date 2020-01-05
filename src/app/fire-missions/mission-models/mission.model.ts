@@ -17,6 +17,7 @@ export class Mission {
         public ammoType: string,
         public numRounds: number,
         public location: PlaceLocation,
-        public engagements: Array<any>
+        public engagements: Array<any>,
+        public isComplete: boolean
     ) {}
 }

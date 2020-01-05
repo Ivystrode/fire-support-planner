@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { StorageService } from '../../storage.service';
 import { FireMissionsService } from '../fire-missions.service';
 import { PlaceLocation } from '../../shared/models/location.model';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-mission',
@@ -13,7 +15,9 @@ export class NewMissionPage implements OnInit {
   newMissionForm: FormGroup;
 
   constructor(private storageService: StorageService,
-              private FMservice: FireMissionsService) { }
+              private FMservice: FireMissionsService,
+              private alertCtrl: AlertController,
+              private router: Router) { }
 
   ngOnInit() {
     this.newMissionForm = new FormGroup({
@@ -74,12 +78,18 @@ export class NewMissionPage implements OnInit {
         ammoType: this.newMissionForm.value.ammoType,
         numRounds: this.newMissionForm.value.numRounds,
         location: this.newMissionForm.value.location,
-        engagements: []
+        engagements: [],
+        isComplete: false
       };
       this.FMservice.fireMissions.push(newMsn);
       this.FMservice.newMission(newMsn);
+      this.router.navigateByUrl('/fire-missions');
     } else {
       console.log('form invalid');
+      this.alertCtrl.create({header: 'Error', message: 'All fields except direction and distance are mandatory', buttons: ['Acknowledge']})
+      .then(alertEl => {
+        alertEl.present();
+      });
     }
   }
 

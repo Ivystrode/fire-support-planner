@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, NavController, ModalController } from '@ionic/angular';
 import { FireMissionsService } from '../fire-missions.service';
@@ -10,6 +10,7 @@ import { AddEngagementComponent } from './add-engagement/add-engagement.componen
   selector: 'app-mission-detail',
   templateUrl: './mission-detail.page.html',
   styleUrls: ['./mission-detail.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MissionDetailPage implements OnInit {
 
@@ -22,7 +23,9 @@ export class MissionDetailPage implements OnInit {
               private router: Router,
               private alertCtrl: AlertController,
               private navCtrl: NavController,
-              public modalCtrl: ModalController) { }
+              public modalCtrl: ModalController,
+              private zone: NgZone,
+              private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log('ngoninit');
@@ -57,12 +60,16 @@ export class MissionDetailPage implements OnInit {
     }
   }
 
-  addEngagement() {
+  async addEngagement() {
     this.modalCtrl.create({component: AddEngagementComponent,
     componentProps: {
       loadedMission: this.loadedMission
-    }}).then(modalEl => {
-      modalEl.present();
+    }}).then(modal => {
+      modal.present();
+      modal.onDidDismiss().then(() => {
+        // localStorage.sync();
+        this.changeDetector.detectChanges();
+      });
     });
   }
 
@@ -78,6 +85,8 @@ export class MissionDetailPage implements OnInit {
         text: 'Confirm',
         handler: () => {
           console.log('Confirm end fire mission');
+          this.FMservice.completeFireMission(this.loadedMission.target);
+          this.router.navigateByUrl('/fire-missions');
         }
       }
     ]

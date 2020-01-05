@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FireMissionsPage implements OnInit {
   loadedMissions: Mission[];
+  relevantMissions: Mission[];
 
   constructor(private storageService: StorageService,
               private FMservice: FireMissionsService,
@@ -23,7 +24,11 @@ export class FireMissionsPage implements OnInit {
 
   onFilterUpdate(event: CustomEvent<SegmentChangeEventDetail>) {
     console.log('switched to: ' + event);
-
+    if (event.detail.value === 'inProgress') {
+      this.relevantMissions = this.loadedMissions.filter(mission => mission.isComplete === false);
+    } else {
+      this.relevantMissions = this.loadedMissions.filter(mission => mission.isComplete === true);
+    }
   }
 
   ionViewWillEnter() {
