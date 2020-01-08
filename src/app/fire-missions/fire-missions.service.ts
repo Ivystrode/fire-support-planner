@@ -8,7 +8,7 @@ import { pipe } from 'rxjs';
   providedIn: 'root'
 })
 export class FireMissionsService {
-  public fireMissions = [];
+  public fireMissions: any[] = [''];
 
   constructor(private storageService: StorageService) { }
 
@@ -80,6 +80,24 @@ export class FireMissionsService {
       this.fireMissions = storedMissionList;
     });
     return [...this.fireMissions];
+  }
+
+  deleteFireMission(missionId) {
+    this.storageService.getObject('FireMissions').then(storedMissionList => {
+      this.fireMissions = storedMissionList;
+    });
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.fireMissions.length; i++) {
+    if (this.fireMissions[i].target === missionId) {
+      // ===delete this.fireMissions[i]; trying new idea===
+      this.fireMissions[i] = 'DELETED';
+      // == IT WORKS ===
+      console.log('FMservice deleted');
+      this.storageService.setObject('FireMissions', this.fireMissions);
+      console.log(this.fireMissions[i]);
+      console.log('FMservice delete complete');
+      }
+    }
   }
 
 }
