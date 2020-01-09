@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'fire-plans',
     loadChildren: () => import('./fire-plans/fire-plans.module').then( m => m.FirePlansPageModule)
+  },
+  {
+    path: 'targets',
+    loadChildren: () => import('./targets/targets.module').then( m => m.TargetsPageModule)
   }
 ];
 

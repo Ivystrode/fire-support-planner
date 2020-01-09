@@ -6,7 +6,7 @@
     <ion-title>{{ loadedMission?.target }}</ion-title>
     <ion-buttons slot="primary">
       <!-- Disable this button if isComplete is false -->
-      <ion-button>Record</ion-button>
+      <ion-button (click)="recordTarget()">Record</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

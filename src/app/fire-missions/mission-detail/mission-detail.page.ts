@@ -5,6 +5,7 @@ import { FireMissionsService } from '../fire-missions.service';
 import { Mission } from '../mission-models/mission.model';
 import { MapModalComponent } from '../../shared/map-modal/map-modal.component';
 import { AddEngagementComponent } from './add-engagement/add-engagement.component';
+import { TargetsService } from 'src/app/shared/targets.service';
 
 @Component({
   selector: 'app-mission-detail',
@@ -20,6 +21,7 @@ export class MissionDetailPage implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private FMservice: FireMissionsService,
+              private tgtService: TargetsService,
               private router: Router,
               private alertCtrl: AlertController,
               private navCtrl: NavController,
@@ -87,6 +89,29 @@ export class MissionDetailPage implements OnInit {
           console.log('Confirm end fire mission');
           this.FMservice.completeFireMission(this.loadedMission.target);
           this.router.navigateByUrl('/fire-missions');
+        }
+      }
+    ]
+  }).then(alertEl => {
+    alertEl.present();
+  });
+  }
+
+  recordTarget() {
+    this.alertCtrl.create({header: 'RECORD AS TARGET',
+    message: 'This will end the mission and store the target',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'Cancel'
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+          console.log('Record as target');
+          this.tgtService.recordAsTarget(this.loadedMission);
+          this.FMservice.completeFireMission(this.loadedMission.target);
+          this.router.navigateByUrl('/targets');
         }
       }
     ]

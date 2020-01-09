@@ -9,6 +9,7 @@ import { MissionDetailPageRoutingModule } from './mission-detail-routing.module'
 import { MissionDetailPage } from './mission-detail.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddEngagementComponent } from './add-engagement/add-engagement.component';
+import { TargetsPage } from 'src/app/targets/targets.page';
 
 @NgModule({
   imports: [

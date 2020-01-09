@@ -3,12 +3,16 @@ import { BehaviorSubject } from 'rxjs';
 import { Mission } from './mission-models/mission.model';
 import { StorageService } from '../storage.service';
 import { pipe } from 'rxjs';
+import { Target } from '../shared/models/target.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FireMissionsService {
+  // Storage service: FireMissions
   public fireMissions: any[] = [''];
+
+
 
   constructor(private storageService: StorageService) { }
 
@@ -81,6 +85,9 @@ export class FireMissionsService {
     });
     return [...this.fireMissions];
   }
+
+
+
 
   deleteFireMission(missionId) {
     this.storageService.getObject('FireMissions').then(storedMissionList => {
