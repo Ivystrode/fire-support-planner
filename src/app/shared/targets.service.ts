@@ -26,6 +26,20 @@ export class TargetsService {
     this.storageService.setObject('MainTargetList', this.targets);
   }
 
+  getFromStorage(targetId) {
+    let requestedTarget;
+    this.storageService.getObject('MainTargetList').then(storedTargetList => {
+      this.targets = storedTargetList;
+    });
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.targets.length; i++) {
+    if (this.targets[i].target === targetId) {
+      requestedTarget = this.targets[i];
+      }
+    }
+    return requestedTarget;
+  }
+
   deleteTarget(targetId) {
     console.log('delete tbc' + targetId);
     this.storageService.getObject('MainTargetList').then(storedTargetList => {

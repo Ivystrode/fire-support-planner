@@ -1,0 +1,19 @@
+img {
+    width: 80% !important;
+    height: 40vh !important;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid black;
+    // justify-content: center;
+    // align-items: center;
+}
+
+.mapImageContainer {
+    width: 80% !important;
+    height: 40vh;
+    max-height: 100%;
+    margin: 0 auto;
+    display: block;
+    border: 1px dotted gray;
+    justify-content: center;
+}

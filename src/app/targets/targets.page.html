@@ -1,15 +1,18 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-menu-button menu="m1"></ion-menu-button>
     </ion-buttons>
     <ion-title>Targets</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="loadedTargets.length < 2" class="ion-text-center">
+    <p>To create a target, begin a new fire mission and record as target once adjusted</p>
+  </div>
   <ion-list>
-    <ion-item-sliding *ngFor="let target of loadedTargets">
+    <ion-item-sliding *ngFor="let target of loadedTargets" (click)="onPreview(target.target)">
       <ion-item>
         <ion-label>
           <h2>{{target.target}}</h2>
