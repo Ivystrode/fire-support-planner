@@ -82,9 +82,9 @@
         <ion-list>
           <ion-item *ngFor="let engagement of engagements"> <!--In future add ngif to this to add for each new engagement-->
             <ion-label>
-              <h2>{{engagement.directionCorrection ?  engagement.directionCorrection : ' ' }}  {{engagement.distanceCorrection ? engagement.distanceCorrection : ' '}}  {{engagement.heightCorrection ? engagement.heightCorrection : ' '}}</h2>
+              <h2>{{engagement.type}}</h2>
               <p>Rounds: {{engagement.rounds}} | Rate: {{engagement.rate}}</p>
-              <p>{{engagement.type}}</p>
+              <p>{{engagement.directionCorrection ?  engagement.directionCorrection : ' ' }}  {{engagement.distanceCorrection ? engagement.distanceCorrection : ' '}}  {{engagement.heightCorrection ? engagement.heightCorrection : ' '}}</p>
             </ion-label>
           </ion-item>
         </ion-list>

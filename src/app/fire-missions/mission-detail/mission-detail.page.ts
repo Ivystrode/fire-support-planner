@@ -44,6 +44,11 @@ export class MissionDetailPage implements OnInit {
     // this.activatedRoute.snapshot.paramMap.get('target');
   }
 
+  ionViewWillEnter() {
+    this.loadedMission = this.FMservice.getFromStorage(this.target);
+    this.engagements = this.loadedMission.engagements;
+  }
+
   showMap() {
     if (this.loadedMission.location) {
      this.modalCtrl.create({component: MapModalComponent, componentProps: {

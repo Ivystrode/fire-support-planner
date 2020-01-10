@@ -29,6 +29,7 @@ export class FireMissionsPage implements OnInit {
   ionViewWillEnter() {
     console.log('entered fire missions page');
     this.loadedMissions = this.FMservice.fireMissions; // changed from showFromStorate to see if delete then works properly...
+    this.relevantMissions = this.loadedMissions.filter(mission => mission.isComplete === false);
     if (this.loadedMissions.length < 2) {
       this.noMissions = true;
     } else {

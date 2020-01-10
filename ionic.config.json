@@ -1,7 +1,8 @@
 {
   "name": "Fire-Support-Planner",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
