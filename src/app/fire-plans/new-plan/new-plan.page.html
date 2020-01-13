@@ -69,7 +69,7 @@
           <ion-item>
             <ion-label position="floating">Targets</ion-label>
             <ion-select multiple="true" formControlName="targets" ok-text="Select" cancel-text="Close">
-              <ion-select-option *ngFor="let target of targets" value="target">{{target.target}}</ion-select-option>
+              <ion-select-option *ngFor="let target of targets" value="{{target.target}}">{{target.target}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>

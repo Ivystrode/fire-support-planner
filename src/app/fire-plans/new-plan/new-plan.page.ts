@@ -70,11 +70,13 @@ export class NewPlanPage implements OnInit {
         superimposed: this.newPlanForm.value.superimposed,
         hhr: this.newPlanForm.value.hhr,
         dtg: this.newPlanForm.value.dtg,
+        // targets: this.FPservice.planTargets.push(this.newPlanForm.value.targets),
         targets: this.newPlanForm.value.targets,
         isComplete: false
       };
       this.FPservice.firePlans.push(newPlan);
       this.FPservice.newPlan(newPlan);
+      console.log(this.FPservice.firePlans);
       this.router.navigateByUrl('/fire-plans');
     } else {
       console.log('form invalid');

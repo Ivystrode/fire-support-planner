@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { StorageService } from '../storage.service';
 import { pipe } from 'rxjs';
 import { Target } from '../shared/models/target.model';
+import { Fireplan } from '../shared/models/fireplan.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { Target } from '../shared/models/target.model';
 export class FirePlansService {
   // Storage service: FirePlans
   public firePlans: any[] = [''];
+  // public planTargets: Fireplan['targets'] = [];
 
 
 

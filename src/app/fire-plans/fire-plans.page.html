@@ -31,7 +31,7 @@
       <ion-item [routerLink]="['./', plan.planname]">
       <ion-label>
         <h2>{{ plan.planname }}</h2>
-        <p> <strong>{{ plan.originator }}</strong> | Supporting {{ plan.supporting }}</p>
+        <p> <strong>{{ plan.originator }}</strong> | Supporting: {{ plan.supporting }} | Targets: {{plan.targets.length}}</p>
         <p><strong>H Hr: </strong>{{plan.hhr}}</p>
       </ion-label>
     </ion-item>
