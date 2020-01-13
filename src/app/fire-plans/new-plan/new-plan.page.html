@@ -3,10 +3,79 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Create Fire Plan</ion-title>
+    <ion-title>New Fire Plan</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCreateFirePlan()">CONFIRM</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <form [formGroup]="newPlanForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Plan name</ion-label>
+            <ion-input type="text" formControlName="planname"></ion-input>
+          </ion-item>
+        </ion-col>        
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">DTG</ion-label>
+            <ion-input type="text" formControlName="dtg"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="4" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Supporting</ion-label>
+            <ion-input type="text" formControlName="supporting"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="4" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Originator</ion-label>
+            <ion-input type="text" formControlName="originator"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="4" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Mods. By</ion-label>
+            <ion-input type="text" formControlName="modsby"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">Superimposed</ion-label>
+            <ion-input type="text" formControlName="superimposed"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="6" offset-sm="0">
+          <ion-item>
+            <ion-label position="floating">H HOUR</ion-label>
+            <ion-input type="text" formControlName="hhr"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+      </ion-row>
+      <ion-row>        
+        <ion-col size-sm="6" offset-sm="3">          
+          <ion-item>
+            <ion-label position="floating">Targets</ion-label>
+            <ion-select multiple="true" formControlName="targets" ok-text="Select" cancel-text="Close">
+              <ion-select-option *ngFor="let target of targets" value="target">{{target.target}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
 
 </ion-content>

@@ -16,8 +16,33 @@
 
 <ion-content>
   <div class="ion-text-center">
-    <p>Fire Plans you have created will appear below</p>
+    <p>Fire Plans you have created will appear here</p>
   </div>
+  <ion-segment (ionChange)="onFilterUpdate($event)" class="ion-padding">
+    <ion-segment-button value="inProgress" checked>In Progress</ion-segment-button>
+    <ion-segment-button value="complete">Complete</ion-segment-button>
+  </ion-segment>
+
+
+  <p *ngIf="noPlans" class="ion-text-center">No missions to display</p>
+
+  <ion-list *ngIf="!noPlans" class="ion-margin">
+    <ion-item-sliding *ngFor="let plan of relevantPlans"> <!-- -->
+      <ion-item [routerLink]="['./', plan.planname]">
+      <ion-label>
+        <h2>{{ plan.planname }}</h2>
+        <p> <strong>{{ plan.originator }}</strong> | Supporting {{ plan.supporting }}</p>
+        <p><strong>H Hr: </strong>{{plan.hhr}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item-options side="end">
+      <ion-item-option color="danger">
+        <h4 color="danger">DEL</h4>
+      </ion-item-option>
+    </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>
+
 

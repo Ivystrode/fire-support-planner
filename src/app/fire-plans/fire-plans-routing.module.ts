@@ -9,12 +9,12 @@ const routes: Routes = [
     component: FirePlansPage
   },
   {
-    path: 'plan-detail',
-    loadChildren: () => import('./plan-detail/plan-detail.module').then( m => m.PlanDetailPageModule)
-  },
-  {
     path: 'new-plan',
     loadChildren: () => import('./new-plan/new-plan.module').then( m => m.NewPlanPageModule)
+  },
+  {
+    path: ':planname',
+    loadChildren: () => import('./plan-detail/plan-detail.module').then( m => m.PlanDetailPageModule)
   }
 ];
 
