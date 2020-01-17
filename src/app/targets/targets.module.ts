@@ -19,6 +19,7 @@ import { TargetPreviewComponent } from './target-preview/target-preview.componen
     SharedModule
   ],
   declarations: [TargetsPage, TargetPreviewComponent],
+  exports: [TargetPreviewComponent],
   entryComponents: [TargetPreviewComponent]
 })
 export class TargetsPageModule {}

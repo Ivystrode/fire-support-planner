@@ -35,20 +35,6 @@ export class FirePlansService {
     return requestedPlan;
   }
 
-  newEngagement(PlanId, newEng) {
-    let requestedPlan;
-    this.storageService.getObject('FirePlans').then(storedPlanList => {
-      this.firePlans = storedPlanList;
-    });
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.firePlans.length; i++) {
-    if (this.firePlans[i].target === PlanId) {
-      requestedPlan = this.firePlans[i];
-      }
-    }
-    requestedPlan.engagements.push(newEng);
-    this.storageService.setObject('FirePlans', this.firePlans);
-  }
 
   completeFirePlan(PlanId) {
     let requestedPlan;

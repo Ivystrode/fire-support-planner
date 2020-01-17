@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FirePlansService } from '../fire-plans.service';
 import { TargetsService } from 'src/app/shared/targets.service';
 import { AlertController, NavController, ModalController } from '@ionic/angular';
+import { TargetPreviewComponent } from '../../targets/target-preview/target-preview.component';
+import { Target } from 'src/app/shared/models/target.model';
 
 @Component({
   selector: 'app-plan-detail',
@@ -14,6 +16,8 @@ export class PlanDetailPage implements OnInit {
 
   public loadedPlan: Fireplan;
   private planname: string;
+  public loadedTargets: Target[];
+  public loadedTarget: Target;
 
   constructor(private activatedRoute: ActivatedRoute,
               private FPservice: FirePlansService,
@@ -40,6 +44,16 @@ export class PlanDetailPage implements OnInit {
 
   ionViewWillEnter() {
     this.loadedPlan = this.FPservice.getFromStorage(this.planname);
+  }
+
+  previewTarget(targetId) {
+    this.loadedTarget = this.tgtService.getFromStorage(targetId);
+    this.modalCtrl.create({component: TargetPreviewComponent,
+    componentProps: {
+      loadedTarget: this.loadedTarget
+    }}).then(modal => {
+      modal.present();
+    });
   }
 
 }

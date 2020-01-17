@@ -3,6 +3,9 @@ import { StorageService } from '../storage.service';
 import { Fireplan } from '../shared/models/fireplan.model';
 import { FirePlansService } from './fire-plans.service';
 import { SegmentChangeEventDetail } from '@ionic/core';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { TargetsService } from '../shared/targets.service';
 
 @Component({
   selector: 'app-fire-plans',
@@ -15,7 +18,10 @@ export class FirePlansPage implements OnInit {
   noPlans = false;
 
   constructor(private storageService: StorageService,
-              private FPservice: FirePlansService) { }
+              private FPservice: FirePlansService,
+              private router: Router,
+              private alertCtrl: AlertController,
+              private tgtService: TargetsService) { }
 
   ngOnInit() {
   }
@@ -37,6 +43,20 @@ export class FirePlansPage implements OnInit {
       this.relevantPlans = this.loadedPlans.filter(plan => plan.isComplete === false);
     } else {
       this.relevantPlans = this.loadedPlans.filter(plan => plan.isComplete === true);
+    }
+  }
+
+  newPlanPage() {
+    if (this.tgtService.targets.length < 1) {
+      this.router.navigateByUrl('/fire-plans');
+      this.alertCtrl.create({header: 'Target Array Empty',
+      message: 'You must create at least one target before you can create a fire plan.',
+      buttons: ['Acknowledge']
+      }).then(alertEl => {
+        alertEl.present();
+      });
+    } else {
+      this.router.navigateByUrl('fire-plans/new-plan');
     }
   }
 

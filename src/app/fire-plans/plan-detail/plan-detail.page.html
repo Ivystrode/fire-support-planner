@@ -8,5 +8,41 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row class="ion-text-center">
+      <ion-col size-sm="6" offset-sm="3" class="ion-text-center">
+        <h2>Targets: </h2><p>
+          <ion-list>
+            <ion-item *ngFor="let tgt of loadedPlan?.targets" (click)="previewTarget(tgt)">
+              <ion-label>{{tgt}}</ion-label>
+            </ion-item>
+          </ion-list>
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>     
+      <ion-col size-sm="6" offset-sm="">        
+        <h2>Originator: </h2><p>{{loadedPlan?.originator}}</p>
+      </ion-col>
+      <ion-col size-sm="6" offset-sm="">
+        <h2>Supporting: </h2><p>{{loadedPlan?.supporting}}</p>
+      </ion-col>
+      <ion-col size-sm="6" offset-sm="">
+        <h2>Modifications: </h2><p>{{loadedPlan?.modsby}}</p>
+      </ion-col>
+      <ion-col size-sm="6" offset-sm="">
+        <h2>Superimposed: </h2><p>{{loadedPlan?.superimposed}}</p>
+      </ion-col>
+      <ion-col size-sm="6" offset-sm="">
+        <h2>H Hour: </h2><p><strong>{{loadedPlan?.hhr}}</strong></p>
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-col size-sm="12" offset-sm="" class="ion-text-center">
+        <h1>SCHEDULE</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

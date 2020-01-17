@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PlanDetailPageRoutingModule } from './plan-detail-routing.module';
 
 import { PlanDetailPage } from './plan-detail.page';
+import { TargetPreviewComponent } from '../../targets/target-preview/target-preview.component';
+import { TargetsPageModule } from 'src/app/targets/targets.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlanDetailPageRoutingModule
+    PlanDetailPageRoutingModule,
+    TargetsPageModule
   ],
   declarations: [PlanDetailPage]
 })
