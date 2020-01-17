@@ -11,6 +11,7 @@ export class Fireplan {
           public hhr: string,
           public dtg: string,
           public targets: Array<any>,
+          public fireUnits: Array<any>,
           public isComplete: boolean
       ) {}
   }

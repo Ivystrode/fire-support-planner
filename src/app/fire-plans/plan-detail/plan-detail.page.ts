@@ -56,4 +56,9 @@ export class PlanDetailPage implements OnInit {
     });
   }
 
+  addFireUnit(planId) {
+      this.activatedRoute.snapshot.paramMap.get('planname');
+      this.router.navigateByUrl('/fire-plans/add-fire-unit/' + planId);
+  }
 }
+

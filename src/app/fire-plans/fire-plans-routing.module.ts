@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: ':planname',
     loadChildren: () => import('./plan-detail/plan-detail.module').then( m => m.PlanDetailPageModule)
+  },
+  {
+    path: 'add-fire-unit/:planname',
+    loadChildren: () => import('./add-fire-unit/add-fire-unit.module').then( m => m.AddFireUnitPageModule)
   }
 ];
 
